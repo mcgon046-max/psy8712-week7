@@ -19,5 +19,11 @@ week7_tbl <- read_csv("../data/week3.csv") |>
 
 
 # Visualization
-ggpairs(subset(week7_tbl, select = paste0("q", c(1:5, 7:10))))
-ggsave(filename = "../figs/fig0.png", width = 10, height = 10, dpi = 300)
+fig0 <- ggpairs(subset(week7_tbl, select = paste0("q", c(1:5, 7:10))))
+ggsave(filename = "../figs/fig0.png", plot = fig0, width = 10, height = 10, dpi = 300)
+
+fig1 <- week7_tbl |> 
+        ggplot(aes(x = timeStart, y = q1)) +
+        geom_point() +
+        labs(x = "Date of Experiment", y = "Q1 Score")
+ggsave(filename = "../figs/fig1.png", plot = fig1, width = 10, height = 10, dpi = 300)

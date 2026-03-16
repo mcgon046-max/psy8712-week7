@@ -39,3 +39,8 @@ fig3 <- week7_tbl |>
         facet_grid(cols = vars(factor(gender, levels = c("Male", "Female")))) +
         labs(x = "Score on Q1", y = "Score on Q2") # Had to do a factor call in the middle of the facet_grid layer to get the order correct, I hope this doesn't mean I messed something up above...
 ggsave(filename = "../figs/fig3.png", plot = fig3, width = 10, height = 10, dpi = 300)
+
+week7_tbl |>
+  ggplot(aes(x = gender, y = timeSpent)) +
+  geom_boxplot() +
+  labs(x = "Gender", y = "Time Elapsed (mins)")

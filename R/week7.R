@@ -40,7 +40,18 @@ fig3 <- week7_tbl |>
         labs(x = "Score on Q1", y = "Score on Q2") # Had to do a factor call in the middle of the facet_grid layer to get the order correct, I hope this doesn't mean I messed something up above...
 ggsave(filename = "../figs/fig3.png", plot = fig3, width = 10, height = 10, dpi = 300)
 
-week7_tbl |>
+fig4 <- week7_tbl |>
   ggplot(aes(x = gender, y = timeSpent)) +
   geom_boxplot() +
+  scale_x_discrete(limits = c("Male", "Female")) +
   labs(x = "Gender", y = "Time Elapsed (mins)")
+ggsave(filename = "../figs/fig4.png", plot = fig4, width = 10, height = 10, dpi = 300)
+
+fig5 <- week7_tbl |>
+  ggplot(aes(x = q5, y = q7, color = condition)) +
+  geom_jitter(width = 0.2, height = 0.2, alpha = 1) +
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(x = "Score on Q5", y = "Score on Q7", color = "Experimental Condition") +
+  theme(legend.position = "bottom", legend.background = element_rect(fill = "grey88"))
+ggsave(filename = "../figs/fig5.png", plot = fig5, width = 10, height = 10, dpi = 300)
+  
